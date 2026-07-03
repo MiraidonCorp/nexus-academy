@@ -5,6 +5,7 @@ import './globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Analytics from '@/components/Analytics';
+import SiteNotice from '@/components/SiteNotice';
 import siteContent from '@/lib/content/site.json';
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
@@ -53,9 +54,6 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
-  icons: {
-    icon: '/favicon.ico',
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -74,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </noscript>
         )}
         <Analytics />
+        <SiteNotice />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
