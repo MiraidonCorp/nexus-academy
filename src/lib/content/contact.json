@@ -1,0 +1,45 @@
+{
+  "hero": {
+    "eyebrow": "Let's talk",
+    "heading": "Book a free trial class.",
+    "body": "Fill in the form and we'll be in touch within 24 hours to confirm your child's free trial. No payment, no commitment."
+  },
+  "form": {
+    "heading": "Book a free trial or send an enquiry",
+    "successHeading": "Message received.",
+    "successBody": "We'll confirm your free trial class by email within 24 hours. Bring curiosity — we'll handle the rest.",
+    "disclaimer": "We respond within 24 hours, Monday to Friday.",
+    "programmes": [
+      { "value": "spike", "label": "LEGO Spike Prime" },
+      { "value": "fll", "label": "FLL Competition Track" },
+      { "value": "microbit", "label": "Micro:bit Coding" },
+      { "value": "html", "label": "HTML Basics" },
+      { "value": "ai", "label": "AI for Kids" },
+      { "value": "robot", "label": "Custom Robot Build" },
+      { "value": "unsure", "label": "Not sure yet" }
+    ],
+    "formats": [
+      { "value": "in-person", "label": "In-person" },
+      { "value": "online", "label": "Online" },
+      { "value": "either", "label": "Either works" }
+    ]
+  },
+  "faqs": [
+    {
+      "question": "Is the first trial class really free?",
+      "answer": "Yes, completely. Your child attends one full class at no cost. No credit card required to book."
+    },
+    {
+      "question": "How quickly will you respond?",
+      "answer": "Within 24 hours on weekdays. If you send a form on Friday evening, expect a response Monday morning."
+    },
+    {
+      "question": "Can I visit the centre before committing?",
+      "answer": "Absolutely. Reach out to schedule a tour — you can watch a class in progress and meet the coaches."
+    },
+    {
+      "question": "What if my child doesn't like it?",
+      "answer": "That's what the free trial is for. If they're not keen after the first session, you walk away with no obligation. We'd rather have students who want to be here."
+    }
+  ]
+}

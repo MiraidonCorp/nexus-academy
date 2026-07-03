@@ -1,0 +1,59 @@
+{
+  "siteName": "NEXUS Institute of STEM & Robotics",
+  "siteShortName": "NEXUS",
+  "tagline": "Build robots. Write code. Change the world.",
+  "description": "Hands-on robotics, coding and AI for kids aged 6–16, taught by competition coaches. Six tracks. In-person and online. Real projects every week.",
+  "organization": "Miraidon",
+  "copyright": "2026 Miraidon",
+  "contact": {
+    "phone": "+61 4xx xxx xxx",
+    "phoneHours": "Mon–Fri 9am – 5pm",
+    "email": "hello@nexusrobotics.com",
+    "emailResponse": "We reply within 24 hours",
+    "address": "123 Academy Street, [Suburb], [State]",
+    "hours": "Mon–Sat · Classes from 9am. Online sessions available evenings."
+  },
+  "social": {
+    "whatsapp": "#"
+  },
+  "stats": [
+    { "value": "4+", "label": "Years running" },
+    { "value": "500+", "label": "Students trained" },
+    { "value": "12", "label": "FLL awards" },
+    { "value": "6", "label": "Tracks" }
+  ],
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/about" },
+    { "label": "Programmes", "href": "/programmes" },
+    { "label": "Blog", "href": "/blog" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "footer": {
+    "tagline": "We build young minds that build the future.",
+    "columns": [
+      {
+        "heading": "Programmes",
+        "links": [
+          { "label": "LEGO Spike Prime", "href": "/programmes" },
+          { "label": "FLL Competition", "href": "/programmes" },
+          { "label": "Micro:bit & AI", "href": "/programmes" }
+        ]
+      },
+      {
+        "heading": "Academy",
+        "links": [
+          { "label": "About us", "href": "/about" },
+          { "label": "Blog", "href": "/blog" }
+        ]
+      },
+      {
+        "heading": "Contact",
+        "links": [
+          { "label": "Book a free trial", "href": "/contact" },
+          { "label": "Get in touch", "href": "/contact" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "hero": {
+    "eyebrow": "Our story",
+    "heading": "Built with intention.\nGrounded in results.",
+    "body": "NEXUS Robotics Kids Academy exists because we believe every curious child deserves access to the same quality of coaching that produces national competition results — regardless of experience level."
+  },
+  "story": {
+    "eyebrow": "How it started",
+    "heading": "From competition floor to classroom",
+    "paragraphs": [
+      "It started with one FIRST LEGO League team, four kids, and a borrowed set of Spike Prime kits in a school gymnasium. Four seasons later, that team had placed at state level twice and produced three students who went on to study engineering.",
+      "We built NEXUS Robotics to make that experience available to every child who wants it. Not just the ones whose schools happen to have a STEM programme. Not just the ones whose families can afford private tutoring.",
+      "Every kid who walks through our door — or logs into our platform — gets the same competition-grade coaching. The same expectation of excellence. The same belief that they can build something that matters."
+    ]
+  },
+  "mission": {
+    "text": "To make competition-quality robotics education accessible to every curious child — building the technical skills, creative confidence, and collaborative mindset that define the next generation of builders."
+  },
+  "vision": {
+    "text": "A generation of young Australians who don't just use technology — they build it, question it, and use it to solve problems that matter."
+  },
+  "philosophy": {
+    "eyebrow": "How we teach",
+    "heading": "Project-based. Competition-driven.",
+    "pillars": [
+      {
+        "icon": "fa-hands-clapping",
+        "accentColor": "#0F6E56",
+        "iconBg": "#E8F5F1",
+        "heading": "Hands-on first",
+        "body": "Every concept is introduced through building. Theory follows practice, never the other way around."
+      },
+      {
+        "icon": "fa-bolt",
+        "accentColor": "#EF9F27",
+        "iconBg": "#FEF5E7",
+        "heading": "Fail fast",
+        "body": "Mistakes are data. We encourage iteration and celebrate the moments when things don't work the first time."
+      },
+      {
+        "icon": "fa-magnifying-glass",
+        "accentColor": "#534AB7",
+        "iconBg": "#EEEDFA",
+        "heading": "Ask why",
+        "body": "Before we ask how to build something, we ask whether it should be built — and who it serves."
+      },
+      {
+        "icon": "fa-users",
+        "accentColor": "#378ADD",
+        "iconBg": "#E8F2FB",
+        "heading": "Team over individual",
+        "body": "Robotics is a team sport. Communication and collaboration are core skills — not extras."
+      }
+    ]
+  },
+  "team": {
+    "eyebrow": "The coaches",
+    "heading": "Meet the team",
+    "body": "Every instructor at NEXUS Robotics has competed in or coached FIRST LEGO League. We teach what we've lived.",
+    "members": [
+      {
+        "name": "Alex Chen",
+        "role": "Head Coach · LEGO Spike Prime",
+        "roleColor": "#0F6E56",
+        "bio": "FLL coach for 5 seasons. Engineering graduate. Believes every child can code — they just need the right first robot.",
+        "image": "/images/team1.png",
+        "imageAlt": "Alex Chen, Head Coach"
+      },
+      {
+        "name": "Priya Nair",
+        "role": "FLL Competition Coach",
+        "roleColor": "#EF9F27",
+        "bio": "Two-time state finalist. Teaches strategy, notebook writing, and the art of designing a robot that wins on consistency.",
+        "image": "/images/team2.png",
+        "imageAlt": "Priya Nair, FLL Competition Coach"
+      },
+      {
+        "name": "Jordan Park",
+        "role": "Micro:bit & AI Instructor",
+        "roleColor": "#534AB7",
+        "bio": "Software developer turned educator. Makes electronics and AI approachable for kids who've never touched a circuit board.",
+        "image": "/images/team3.png",
+        "imageAlt": "Jordan Park, Micro:bit & AI Instructor"
+      },
+      {
+        "name": "Sam Torres",
+        "role": "Web Dev & 3D Printing Lead",
+        "roleColor": "#378ADD",
+        "bio": "Mechanical engineering background. Runs the Custom Robot Build and HTML Basics tracks. Designed our first 3D-printed competition bot.",
+        "image": "/images/team4.png",
+        "imageAlt": "Sam Torres, Web Dev & 3D Printing Lead"
+      }
+    ]
+  },
+  "timeline": {
+    "eyebrow": "FLL track record",
+    "heading": "Our competition history",
+    "events": [
+      {
+        "year": "2026 Season",
+        "color": "#EF9F27",
+        "title": "State Championship — Regional Finalist",
+        "body": "Our strongest season yet. Two teams competed at regional level; one advanced to state. Robot Design Award winner at regionals."
+      },
+      {
+        "year": "2025 Season",
+        "color": "#0F6E56",
+        "title": "Coaches Award + Core Values Award",
+        "body": "Three teams competed across two regional events. Recognised for team presentation quality and engineering notebook standard."
+      },
+      {
+        "year": "2024 Season",
+        "color": "#534AB7",
+        "title": "First competition entry — Best Rookie Team",
+        "body": "NEXUS Robotics entered its first FLL competition with one team of six students. Awarded Best Rookie Team at the regional qualifier."
+      },
+      {
+        "year": "2023",
+        "color": "#D3D1C7",
+        "title": "Academy founded · First cohort of 12 students",
+        "body": "NEXUS Robotics Kids Academy opens with one weekly class, one LEGO Spike Prime track, and twelve very curious kids."
+      }
+    ]
+  }
+}
