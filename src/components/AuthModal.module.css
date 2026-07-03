@@ -12,14 +12,15 @@
 
 .modal {
   position: relative;
-  background: var(--color-surface);
-  border-radius: 1.25rem;
+  background: var(--color-white);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
   padding: 2rem;
   width: 100%;
   max-width: 420px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-md);
 }
 
 .closeBtn {
@@ -43,7 +44,7 @@
 }
 
 .closeBtn:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-green);
   outline-offset: 2px;
 }
 
@@ -60,7 +61,7 @@
   font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: var(--color-text);
+  color: var(--color-green);
   margin-top: 0.5rem;
 }
 
@@ -74,8 +75,8 @@
 .tabs {
   display: flex;
   gap: 0.5rem;
-  background: var(--color-border);
-  border-radius: 10px;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
   padding: 4px;
   margin-bottom: 1.5rem;
 }
@@ -94,12 +95,12 @@
 }
 
 .tab:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-green);
   outline-offset: 2px;
 }
 
 .tabActive {
-  background: var(--color-surface);
+  background: #fff;
   color: var(--color-text);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
@@ -120,7 +121,7 @@
   width: 100%;
   padding: 0.6875rem 1rem;
   border: 1.5px solid var(--color-border);
-  background: var(--color-surface);
+  background: #fff;
   border-radius: 10px;
   font-size: 0.875rem;
   font-weight: 500;
@@ -130,12 +131,12 @@
 }
 
 .socialBtn:hover {
-  border-color: var(--color-accent);
-  background: color-mix(in srgb, var(--color-accent) 6%, var(--color-surface));
+  border-color: var(--color-green);
+  background: color-mix(in srgb, var(--color-green) 6%, #fff);
 }
 
 .socialBtn:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-green);
   outline-offset: 2px;
 }
 
@@ -202,8 +203,8 @@
 
 .input:focus {
   outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
+  border-color: var(--color-green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-green) 20%, transparent);
 }
 
 .inputError {
@@ -222,19 +223,19 @@
 .submitBtn {
   width: 100%;
   padding: 0.75rem 1rem;
-  background: var(--color-accent);
+  background: var(--color-green);
   color: #fff;
   border: none;
   border-radius: 10px;
   font-size: 0.9375rem;
   font-weight: 700;
   cursor: pointer;
-  transition: opacity 0.15s, transform 0.1s;
+  transition: background 0.15s, transform 0.1s;
   margin-bottom: 1.25rem;
 }
 
 .submitBtn:hover {
-  opacity: 0.9;
+  background: var(--color-green-mid);
 }
 
 .submitBtn:active {
@@ -242,7 +243,7 @@
 }
 
 .submitBtn:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-green);
   outline-offset: 3px;
 }
 
@@ -257,7 +258,7 @@
 .switchLink {
   background: none;
   border: none;
-  color: var(--color-accent);
+  color: var(--color-green);
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
@@ -266,7 +267,7 @@
 }
 
 .switchLink:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-green);
   outline-offset: 2px;
   border-radius: 2px;
 }
