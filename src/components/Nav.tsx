@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import siteContent from '@/lib/content/site.json';
 import styles from './Nav.module.css';
 import AuthModal from './AuthModal';
+import { trackButtonClick, trackInteraction, trackLogout } from '@/lib/analytics';
 
 export default function Nav() {
   const pathname = usePathname();
@@ -30,13 +31,25 @@ export default function Nav() {
     return () => window.removeEventListener('nexus-auth-change', read);
   }, []);
 
-  const openLogin = () => { setAuthTab('login'); setAuthOpen(true); };
-  const openSignup = () => { setAuthTab('signup'); setAuthOpen(true); };
+  const openLogin = (location: string) => {
+    trackButtonClick({ label: 'Log in', location });
+    setAuthTab('login'); setAuthOpen(true);
+  };
+  const openSignup = (location: string) => {
+    trackButtonClick({ label: 'Sign up / Log in', location });
+    setAuthTab('signup'); setAuthOpen(true);
+  };
 
-  const handleLogout = () => {
+  const handleLogout = (location: string) => {
+    trackLogout(location);
     localStorage.removeItem('nexus_auth');
     setLoggedIn(false);
     window.dispatchEvent(new Event('nexus-auth-change'));
+  };
+
+  const toggleMenu = () => {
+    trackInteraction({ type: 'menu_toggle', label: menuOpen ? 'Close menu' : 'Open menu', location: 'nav-mobile' });
+    setMenuOpen((v) => !v);
   };
 
   return (
@@ -82,7 +95,7 @@ export default function Nav() {
               <button
                 type="button"
                 className={styles.btnOutline}
-                onClick={handleLogout}
+                onClick={() => handleLogout('nav-desktop')}
               >
                 Log out
               </button>
@@ -90,12 +103,16 @@ export default function Nav() {
               <button
                 type="button"
                 className={styles.btnOutline}
-                onClick={openLogin}
+                onClick={() => openLogin('nav-desktop')}
               >
                 Log in
               </button>
             )}
-            <Link href="/contact" className={styles.btnPrimary}>
+            <Link
+              href="/contact"
+              className={styles.btnPrimary}
+              onClick={() => trackButtonClick({ label: 'Book a Free Trial', location: 'nav-desktop', href: '/contact' })}
+            >
               Book a Free Trial
             </Link>
           </div>
@@ -106,7 +123,7 @@ export default function Nav() {
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((v) => !v)}
+            onClick={toggleMenu}
           >
             <span className={styles.hamburgerLine} />
             <span className={styles.hamburgerLine} />
@@ -139,7 +156,7 @@ export default function Nav() {
                   <button
                     type="button"
                     className={styles.mobileCta}
-                    onClick={() => { handleLogout(); setMenuOpen(false); }}
+                    onClick={() => { handleLogout('nav-mobile'); setMenuOpen(false); }}
                   >
                     Log out
                   </button>
@@ -147,14 +164,18 @@ export default function Nav() {
                   <button
                     type="button"
                     className={styles.mobileCta}
-                    onClick={() => { openSignup(); setMenuOpen(false); }}
+                    onClick={() => { openSignup('nav-mobile'); setMenuOpen(false); }}
                   >
                     Sign up / Log in
                   </button>
                 )}
               </li>
               <li>
-                <Link href="/contact" className={styles.mobileCta} onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/contact"
+                  className={styles.mobileCta}
+                  onClick={() => { trackButtonClick({ label: 'Book a Free Trial', location: 'nav-mobile', href: '/contact' }); setMenuOpen(false); }}
+                >
                   Book a Free Trial
                 </Link>
               </li>

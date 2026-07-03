@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './blog.module.css';
+import { trackButtonClick, trackFormSubmit, trackInteraction } from '@/lib/analytics';
 
 interface Post {
   id: number;
@@ -38,10 +39,16 @@ export default function BlogClient({ posts, categories }: { posts: Post[]; categ
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) { setEmailError('Enter your email'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setEmailError('Enter a valid email'); return; }
+    if (!email) { setEmailError('Enter your email'); trackFormSubmit({ formName: 'newsletter_subscribe', location: 'blog-newsletter', success: false }); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setEmailError('Enter a valid email'); trackFormSubmit({ formName: 'newsletter_subscribe', location: 'blog-newsletter', success: false }); return; }
     setEmailError('');
+    trackFormSubmit({ formName: 'newsletter_subscribe', location: 'blog-newsletter', success: true });
     setSubbed(true);
+  };
+
+  const selectCategory = (catId: string) => {
+    trackInteraction({ type: 'filter', label: catId, location: 'blog-category-filter' });
+    setActiveCat(catId);
   };
 
   const pill = (cat: string) =>
@@ -56,7 +63,7 @@ export default function BlogClient({ posts, categories }: { posts: Post[]; categ
             <button
               key={cat.id}
               className={pill(cat.id)}
-              onClick={() => setActiveCat(cat.id)}
+              onClick={() => selectCategory(cat.id)}
               aria-pressed={activeCat === cat.id}
             >
               {cat.label}
@@ -97,7 +104,11 @@ export default function BlogClient({ posts, categories }: { posts: Post[]; categ
                   <span aria-hidden="true">·</span>
                   <span>{featured.readTime} read</span>
                 </p>
-                <Link href={`/blog/${featured.slug}`} className={styles.readLink}>
+                <Link
+                  href={`/blog/${featured.slug}`}
+                  className={styles.readLink}
+                  onClick={() => trackButtonClick({ label: 'Read article', location: 'blog-featured', href: `/blog/${featured.slug}` })}
+                >
                   Read article
                   <svg aria-hidden="true" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M7 2.5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </Link>
@@ -140,7 +151,11 @@ export default function BlogClient({ posts, categories }: { posts: Post[]; categ
                     <p className={styles.blogCardExcerpt}>{post.excerpt}</p>
                     <div className={styles.blogCardFooter}>
                       <span className={styles.blogMeta}>{post.author} · {post.readTime}</span>
-                      <Link href={`/blog/${post.slug}`} className={styles.blogReadLink}>
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className={styles.blogReadLink}
+                        onClick={() => trackButtonClick({ label: 'Read', location: 'blog-grid-card', href: `/blog/${post.slug}` })}
+                      >
                         Read
                         <svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5h7M6 2.5l3 2.5-3 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                       </Link>

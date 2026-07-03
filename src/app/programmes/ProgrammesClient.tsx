@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import programmesContent from '@/lib/content/programmes.json';
 import styles from './programmes.module.css';
+import { trackButtonClick, trackInteraction } from '@/lib/analytics';
 
 type AgeFilter = 'all' | '6-9' | '10-12' | '13-16';
 type FormatFilter = 'all' | 'in-person' | 'online';
@@ -26,6 +27,16 @@ export default function ProgrammesClient() {
   const pill = (active: boolean) =>
     [styles.filterPill, active ? styles.filterPillActive : ''].join(' ');
 
+  const selectAgeFilter = (v: AgeFilter) => {
+    trackInteraction({ type: 'filter', label: v, location: 'programmes-age-filter' });
+    setAgeFilter(v);
+  };
+
+  const selectFormatFilter = (v: FormatFilter) => {
+    trackInteraction({ type: 'filter', label: v, location: 'programmes-format-filter' });
+    setFormatFilter(v);
+  };
+
   return (
     <>
       {/* FILTER BAR */}
@@ -38,7 +49,7 @@ export default function ProgrammesClient() {
                 <button
                   key={v}
                   className={pill(ageFilter === v)}
-                  onClick={() => setAgeFilter(v)}
+                  onClick={() => selectAgeFilter(v)}
                   aria-pressed={ageFilter === v}
                 >
                   {v === 'all' ? 'All ages' : v === '6-9' ? 'Ages 6–9' : v === '10-12' ? 'Ages 10–12' : 'Ages 13–16'}
@@ -54,7 +65,7 @@ export default function ProgrammesClient() {
                 <button
                   key={v}
                   className={pill(formatFilter === v)}
-                  onClick={() => setFormatFilter(v)}
+                  onClick={() => selectFormatFilter(v)}
                   aria-pressed={formatFilter === v}
                 >
                   {v === 'all' ? 'All formats' : v === 'in-person' ? 'In-person' : 'Online'}
@@ -132,7 +143,11 @@ export default function ProgrammesClient() {
                             <li>⭐ {prog.outcomes}</li>
                             <li>🏷️ Course fee: {prog.price}</li>
                           </ul>
-                          <Link href="/contact" className={styles.enrollBtn}>
+                          <Link
+                            href="/contact"
+                            className={styles.enrollBtn}
+                            onClick={() => trackButtonClick({ label: 'Enroll now', location: 'programmes-list', href: '/contact', programme: prog.name })}
+                          >
                             Enroll now
                             <svg aria-hidden="true" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M7 2.5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                           </Link>

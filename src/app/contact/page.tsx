@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import ContactForm from './ContactForm';
 import contactContent from '@/lib/content/contact.json';
 import siteContent from '@/lib/content/site.json';
+import TrackedLink from '@/components/TrackedLink';
 import styles from './contact.module.css';
 
 export const metadata: Metadata = {
@@ -100,10 +100,10 @@ export default function ContactPage() {
               <p className={styles.onlineBody}>
                 Can&apos;t come in person? Book a free 15-minute intro call and we&apos;ll walk you through the online setup, kit shipping, and class schedule.
               </p>
-              <Link href="/contact" className={styles.onlineCta}>
+              <TrackedLink href="/contact" className={styles.onlineCta} label="Schedule a call" location="contact-sidebar">
                 Schedule a call
                 <svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5h7M6 2.5l3 2.5-3 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </Link>
+              </TrackedLink>
             </div>
           </aside>
         </div>
@@ -125,10 +125,10 @@ export default function ContactPage() {
             ))}
           </dl>
           <div className={styles.faqCta}>
-            <Link href="/programmes" className={styles.faqCtaLink}>
+            <TrackedLink href="/programmes" className={styles.faqCtaLink} label="View full programme FAQ" location="contact-faq">
               View full programme FAQ
               <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>

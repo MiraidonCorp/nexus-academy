@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import Analytics from '@/components/Analytics';
 import siteContent from '@/lib/content/site.json';
+
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 const inter = Inter({
   subsets: ['latin'],
@@ -57,7 +61,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-AU">
+      {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body>
+        {GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
+        <Analytics />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

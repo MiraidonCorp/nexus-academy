@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import ProgrammesClient from './ProgrammesClient';
 import programmesContent from '@/lib/content/programmes.json';
+import TrackedLink from '@/components/TrackedLink';
 import styles from './programmes.module.css';
 
 export const metadata: Metadata = {
@@ -48,10 +48,10 @@ export default function ProgrammesPage() {
               Filter by your child&apos;s age and preferred format below. Every track can be taken independently — or as part of a progression toward the competition team.
             </p>
           </div>
-          <Link href="/contact" className={styles.heroCta}>
+          <TrackedLink href="/contact" className={styles.heroCta} label="Book a free trial" location="programmes-hero">
             Book a free trial
             <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </Link>
+          </TrackedLink>
         </div>
       </section>
 
@@ -140,7 +140,7 @@ export default function ProgrammesPage() {
           </div>
           <p className={styles.pricingNote}>
             Sibling discount available. Annual subscription discounted vs monthly. FLL competition registration billed separately.{' '}
-            <Link href="/contact" className={styles.pricingLink}>Contact us</Link> for exact pricing.
+            <TrackedLink href="/contact" className={styles.pricingLink} label="Contact us" location="programmes-pricing">Contact us</TrackedLink> for exact pricing.
           </p>
         </div>
       </section>
@@ -154,10 +154,10 @@ export default function ProgrammesPage() {
           </div>
           <FaqList faqs={faqs} />
           <div className={styles.faqCta}>
-            <Link href="/contact" className={styles.faqCtaLink}>
+            <TrackedLink href="/contact" className={styles.faqCtaLink} label="Talk to an advisor" location="programmes-faq">
               Talk to an advisor
               <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>

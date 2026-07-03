@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
 import homeContent from '@/lib/content/home.json';
 import programmes from '@/lib/content/programmes.json';
 import siteContent from '@/lib/content/site.json';
 import TrialForm from '@/components/TrialForm';
+import TrackedLink from '@/components/TrackedLink';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -81,13 +81,13 @@ export default function HomePage() {
             </h1>
             <p className={styles.heroBody}>{hero.body}</p>
             <div className={styles.heroCtas}>
-              <Link href={hero.primaryCta.href} className={styles.ctaAmber}>
+              <TrackedLink href={hero.primaryCta.href} className={styles.ctaAmber} label={hero.primaryCta.label} location="home-hero">
                 {hero.primaryCta.label}
                 <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </Link>
-              <Link href={hero.secondaryCta.href} className={styles.ctaGhost}>
+              </TrackedLink>
+              <TrackedLink href={hero.secondaryCta.href} className={styles.ctaGhost} label={hero.secondaryCta.label} location="home-hero">
                 {hero.secondaryCta.label}
-              </Link>
+              </TrackedLink>
             </div>
             <div className={styles.stats} role="list">
               {siteContent.stats.map((stat) => (
@@ -183,19 +183,19 @@ export default function HomePage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/programmes" className={styles.cardCta}>
+                  <TrackedLink href="/programmes" className={styles.cardCta} label="Enroll now" location="home-programme-card">
                     Enroll now
                     <svg aria-hidden="true" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M7 2.5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </Link>
+                  </TrackedLink>
                 </div>
               </article>
             ))}
           </div>
           <div className={styles.programmesCta}>
-            <Link href="/programmes" className={styles.viewAll}>
+            <TrackedLink href="/programmes" className={styles.viewAll} label="View all programmes & pricing" location="home-programmes-section">
               View all programmes &amp; pricing
               <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>
@@ -237,10 +237,10 @@ export default function HomePage() {
               <p className={styles.eyebrow}>{events.eyebrow}</p>
               <h2 id="events-heading" className={styles.sectionHeading}>{events.heading}</h2>
             </div>
-            <Link href="/contact" className={styles.eventsAll}>
+            <TrackedLink href="/contact" className={styles.eventsAll} label="View all events" location="home-events-section">
               View all events
               <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </Link>
+            </TrackedLink>
           </div>
           <div className={styles.eventsGrid}>
             {events.items.map((event) => (
@@ -262,10 +262,10 @@ export default function HomePage() {
                     <li>📍 {event.location}</li>
                     <li>👥 {event.ages}</li>
                   </ul>
-                  <Link href="/contact" className={styles.eventCta}>
+                  <TrackedLink href="/contact" className={styles.eventCta} label="Register" location="home-events-card">
                     Register
                     <svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5h7M6 2.5l3 2.5-3 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  </Link>
+                  </TrackedLink>
                 </div>
               </article>
             ))}

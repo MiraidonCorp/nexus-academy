@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import aboutContent from '@/lib/content/about.json';
+import TrackedLink from '@/components/TrackedLink';
 import styles from './about.module.css';
 
 export const metadata: Metadata = {
@@ -164,13 +164,13 @@ export default function AboutPage() {
             See our facilities, meet the coaches, and watch a class in action. No commitment required — just curiosity.
           </p>
           <div className={styles.ctaButtons}>
-            <Link href="/contact" className={styles.ctaAmber}>
+            <TrackedLink href="/contact" className={styles.ctaAmber} label="Book a free trial" location="about-cta">
               Book a free trial
               <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </Link>
-            <Link href="/contact" className={styles.ctaGhost}>
+            </TrackedLink>
+            <TrackedLink href="/contact" className={styles.ctaGhost} label="Schedule a tour" location="about-cta">
               Schedule a tour
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>

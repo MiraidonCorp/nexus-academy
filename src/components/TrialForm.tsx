@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import styles from './TrialForm.module.css';
+import { trackFormSubmit } from '@/lib/analytics';
 
 interface FormState {
   name: string;
@@ -26,8 +27,13 @@ export default function TrialForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      trackFormSubmit({ formName: 'trial_booking', location: 'home-trial-section', success: false });
+      return;
+    }
     setErrors({});
+    trackFormSubmit({ formName: 'trial_booking', location: 'home-trial-section', success: true, programme_interest: form.interest || undefined });
     setSubmitted(true);
   };
 

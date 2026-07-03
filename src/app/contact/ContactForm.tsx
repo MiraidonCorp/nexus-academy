@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import contactContent from '@/lib/content/contact.json';
 import styles from './contact.module.css';
+import { trackFormSubmit } from '@/lib/analytics';
 
 interface FormState {
   name: string;
@@ -35,8 +36,13 @@ export default function ContactForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      trackFormSubmit({ formName: 'contact_enquiry', location: 'contact-page', success: false });
+      return;
+    }
     setErrors({});
+    trackFormSubmit({ formName: 'contact_enquiry', location: 'contact-page', success: true, programme_interest: form.interest || undefined });
     setSubmitted(true);
   };
 

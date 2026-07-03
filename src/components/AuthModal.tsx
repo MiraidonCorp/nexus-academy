@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from './AuthModal.module.css';
+import { trackButtonClick, trackInteraction, trackLogin, trackSignUp } from '@/lib/analytics';
 
 type Tab = 'login' | 'signup';
 
@@ -64,6 +65,11 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login' }: Aut
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
+    if (tab === 'signup') {
+      trackSignUp({ method: 'email', location: 'auth-modal' });
+    } else {
+      trackLogin({ method: 'email', location: 'auth-modal' });
+    }
     localStorage.setItem('nexus_auth', JSON.stringify({ loggedIn: true, ts: Date.now() }));
     window.dispatchEvent(new Event('nexus-auth-change'));
     onClose();
@@ -73,7 +79,15 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login' }: Aut
     if (e.target === e.currentTarget) onClose();
   };
 
-  const switchTab = (t: Tab) => { setTab(t); setErrors({}); };
+  const switchTab = (t: Tab) => {
+    trackInteraction({ type: 'tab_switch', label: t, location: 'auth-modal' });
+    setTab(t); setErrors({});
+  };
+
+  const handleSocialAuth = (provider: 'google' | 'github') => {
+    trackButtonClick({ label: `Continue with ${provider === 'google' ? 'Google' : 'GitHub'}`, location: 'auth-modal' });
+    alert(`${provider === 'google' ? 'Google' : 'GitHub'} OAuth requires backend integration.`);
+  };
 
   if (!isOpen) return null;
 
@@ -130,7 +144,7 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login' }: Aut
             <button
               type="button"
               className={styles.socialBtn}
-              onClick={() => alert('Google OAuth requires backend integration.')}
+              onClick={() => handleSocialAuth('google')}
             >
               <GoogleIcon />
               Continue with Google
@@ -138,7 +152,7 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login' }: Aut
             <button
               type="button"
               className={styles.socialBtn}
-              onClick={() => alert('GitHub OAuth requires backend integration.')}
+              onClick={() => handleSocialAuth('github')}
             >
               <GitHubIcon />
               Continue with GitHub

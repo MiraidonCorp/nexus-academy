@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import siteContent from '@/lib/content/site.json';
+import TrackedLink from './TrackedLink';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -33,9 +33,9 @@ export default function Footer() {
               <ul role="list" className={styles.colLinks}>
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className={styles.colLink}>
+                    <TrackedLink href={link.href} className={styles.colLink} label={link.label} location={`footer-${col.heading}`}>
                       {link.label}
-                    </Link>
+                    </TrackedLink>
                   </li>
                 ))}
               </ul>
@@ -46,8 +46,8 @@ export default function Footer() {
         <div className={styles.bottom}>
           <p className={styles.copyright}>© {siteContent.copyright}. All rights reserved.</p>
           <div className={styles.legal}>
-            <Link href="/privacy" className={styles.legalLink}>Privacy</Link>
-            <Link href="/terms" className={styles.legalLink}>Terms</Link>
+            <TrackedLink href="/privacy" className={styles.legalLink} label="Privacy" location="footer-legal">Privacy</TrackedLink>
+            <TrackedLink href="/terms" className={styles.legalLink} label="Terms" location="footer-legal">Terms</TrackedLink>
           </div>
         </div>
       </div>
