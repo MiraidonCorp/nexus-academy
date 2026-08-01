@@ -7,7 +7,7 @@
   --color-green-muted: #7DC4AF;
   --color-amber: #EF9F27;
   --color-amber-dark: #D98A1B;
-  --color-amber-deep: #B87212;
+  --color-amber-deep: #8F5208;
   --color-amber-light: #FEF5E7;
   --color-purple: #534AB7;
   --color-purple-light: #EEEDFA;
@@ -16,15 +16,22 @@
   --color-bg: #F1EFE8;
   --color-white: #ffffff;
   --color-text: #2C2C2A;
-  --color-text-muted: #6B7280;
-  --color-text-subtle: #9CA3AF;
+  --color-text-muted: #5F6B7A;
+  --color-text-subtle: #667085;
   --color-border: #D3D1C7;
   --color-border-light: #ECEAE3;
+  --color-surface: #ffffff;
+  --color-surface-soft: #FAFAF8;
+  --color-text-on-action: #0C2A20;
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
+  --color-text-on-dark-subtle: rgba(255, 255, 255, 0.62);
+  --color-focus: #0F6E56;
 
   --font-sans: 'Inter', system-ui, Arial, sans-serif;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 12px;
+  --radius-xl: 16px;
   --shadow-sm: 0 1px 3px rgba(12, 42, 32, 0.06);
   --shadow-md: 0 8px 24px rgba(12, 42, 32, 0.10);
   --nav-height: 88px;
@@ -67,8 +74,9 @@ img, svg {
 
 /* Focus visible for keyboard navigation */
 :focus-visible {
-  outline: 2px solid var(--color-green);
-  outline-offset: 2px;
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px var(--color-white);
   border-radius: 2px;
 }
 
@@ -102,4 +110,16 @@ img, svg {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

@@ -156,18 +156,18 @@
 }
 
 .btnPrimary {
-  background: var(--color-green);
-  color: #E1F5EE;
+  background: var(--color-amber);
+  color: var(--color-text-on-action);
   border-radius: var(--radius-sm);
   padding: 10px 20px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
   transition: background 150ms;
   white-space: nowrap;
 }
 
 .btnPrimary:hover {
-  background: var(--color-green-mid);
+  background: var(--color-amber-dark);
 }
 
 .mobileLocale {
@@ -183,7 +183,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
   margin-left: auto;
 }
 
@@ -255,12 +257,12 @@ button.mobileLink {
 .mobileCta {
   display: block;
   margin-top: 16px;
-  background: var(--color-green);
-  color: #E1F5EE;
+  background: var(--color-amber);
+  color: var(--color-text-on-action);
   border-radius: var(--radius-sm);
   padding: 12px 20px;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
 }
 

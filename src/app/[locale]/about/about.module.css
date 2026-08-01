@@ -376,11 +376,11 @@
 
 .ctaAmber {
   background: var(--color-amber);
-  color: #fff;
+  color: var(--color-text-on-action);
   border-radius: var(--radius-sm);
   padding: 13px 26px;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 7px;

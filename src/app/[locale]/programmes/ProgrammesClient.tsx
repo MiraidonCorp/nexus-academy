@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { isValidLocale, type Locale } from '@/lib/i18n/config';
 import { localizedPath } from '@/lib/i18n/paths';
+import { getProgrammeImage } from '@/lib/content/programmeImages';
 import styles from './programmes.module.css';
 import { trackButtonClick, trackInteraction } from '@/lib/analytics';
 
@@ -87,6 +89,9 @@ export default function ProgrammesClient({ programmesContent }: ProgrammesClient
               ))}
             </div>
           </div>
+          <span className={styles.filterResult} aria-live="polite">
+            {filtered.length} {filtered.length === 1 ? 'programme' : 'programmes'}
+          </span>
         </div>
       </div>
 
@@ -113,11 +118,17 @@ export default function ProgrammesClient({ programmesContent }: ProgrammesClient
                       style={{ background: prog.headerBg }}
                       aria-hidden="true"
                     >
+                      <Image
+                        src={getProgrammeImage(prog.id).src}
+                        alt=""
+                        fill
+                        className={styles.progCardImage}
+                        sizes="(max-width: 900px) 100vw, 32vw"
+                      />
                       <div
                         className={styles.progCardGlow}
                         style={{ background: `radial-gradient(circle at center,${prog.glowColor} 0%,transparent 65%)` }}
                       />
-                      <span className={styles.progCardEmoji}>{prog.heroIcon}</span>
                     </div>
                     <div className={styles.progCardContent}>
                       <div className={styles.cardBadges}>

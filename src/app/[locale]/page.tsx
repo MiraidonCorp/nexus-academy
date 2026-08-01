@@ -5,6 +5,7 @@ import TrackedLink from '@/components/TrackedLink';
 import { getContent } from '@/lib/content/getContent';
 import { isValidLocale, type Locale } from '@/lib/i18n/config';
 import { localeAlternates } from '@/lib/i18n/metadata';
+import { getProgrammeImage } from '@/lib/content/programmeImages';
 import styles from './page.module.css';
 
 export async function generateMetadata({
@@ -128,19 +129,19 @@ export default async function HomePage({
             </div>
           </div>
 
-          {/* Mini programme grid */}
-          <div className={styles.miniGrid} aria-label="Programme overview">
-            {featuredProgrammes.map((prog) => (
-              <div
-                key={prog.id}
-                className={styles.miniCard}
-                style={{ borderTopColor: prog.accentColor }}
-              >
-                <span className={styles.miniIcon} aria-hidden="true">{prog.heroIcon}</span>
-                <span className={styles.miniName}>{prog.name}</span>
-                <span className={styles.miniAge}>{prog.ageRange}</span>
-              </div>
-            ))}
+          <div className={styles.heroMedia}>
+            <Image
+              src="/images/robotics/hero-classroom.webp"
+              alt="Three children build and test a robot together in a robotics classroom"
+              fill
+              priority
+              className={styles.heroImage}
+              sizes="(max-width: 900px) 100vw, 38vw"
+            />
+            <div className={styles.heroMediaNote}>
+              <span className={styles.heroMediaDot} aria-hidden="true" />
+              Real projects every week
+            </div>
           </div>
         </div>
       </section>
@@ -178,13 +179,18 @@ export default async function HomePage({
                 <div
                   className={styles.cardHeader}
                   style={{ background: prog.headerBg }}
-                  aria-hidden="true"
                 >
+                  <Image
+                    src={getProgrammeImage(prog.id).src}
+                    alt=""
+                    fill
+                    className={styles.cardImage}
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                  />
                   <div
                     className={styles.cardGlow}
                     style={{ background: `radial-gradient(circle at center,${prog.glowColor} 0%,transparent 65%)` }}
                   />
-                  <span className={styles.cardIcon}>{prog.heroIcon}</span>
                 </div>
                 <div className={styles.cardBody}>
                   <div className={styles.cardBadges}>
