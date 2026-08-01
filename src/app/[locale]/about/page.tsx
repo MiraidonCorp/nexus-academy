@@ -1,16 +1,41 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import aboutContent from '@/lib/content/about.json';
 import TrackedLink from '@/components/TrackedLink';
+import { getContent } from '@/lib/content/getContent';
+import { isValidLocale, type Locale } from '@/lib/i18n/config';
+import { localeAlternates } from '@/lib/i18n/metadata';
 import styles from './about.module.css';
 
-export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'Learn about NEXUS Institute of STEM & Robotics — our story, mission, teaching philosophy, team of FLL coaches, and competition history.',
-  alternates: { canonical: '/about' },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  if (!isValidLocale(localeParam)) {
+    return {};
+  }
 
-export default function AboutPage() {
+  return {
+    title: 'About Us',
+    description:
+      'Learn about NEXUS Institute of STEM & Robotics — our story, mission, teaching philosophy, team of FLL coaches, and competition history.',
+    alternates: localeAlternates(localeParam, '/about'),
+  };
+}
+
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  if (!isValidLocale(localeParam)) {
+    return null;
+  }
+
+  const locale: Locale = localeParam;
+  const aboutContent = await getContent<typeof import('@/lib/content/ca/about.json')>(locale, 'about');
   const { hero, story, mission, vision, philosophy, team, timeline } = aboutContent;
 
   const personSchema = team.members.map((m) => ({

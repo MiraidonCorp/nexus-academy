@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "eyebrow": "Institute of STEM & Robotics · By Miraidon",
+    "heading": "Build robots.\nWrite code.\nChange the world.",
+    "body": "Hands-on robotics, coding and AI for kids aged 6–16, taught by competition coaches. Six tracks. In-person and online. Real projects every week.",
+    "primaryCta": { "label": "Book a Free Trial", "href": "/contact" },
+    "secondaryCta": { "label": "View Programmes", "href": "/programmes" }
+  },
+  "techBadges": [
+    { "label": "FIRST LEGO League", "iconType": "svg-fll" },
+    { "label": "BBC micro:bit", "iconType": "svg-microbit" },
+    { "label": "Python", "iconType": "img", "src": "https://cdn.simpleicons.org/python", "alt": "Python" },
+    { "label": "HTML & CSS", "iconType": "img", "src": "https://cdn.simpleicons.org/html5", "alt": "HTML5" },
+    { "label": "Raspberry Pi", "iconType": "img", "src": "https://cdn.simpleicons.org/raspberrypi", "alt": "Raspberry Pi" },
+    { "label": "LEGO Spike Prime", "iconType": "svg-lego" }
+  ],
+  "whyUs": {
+    "eyebrow": "Why families choose us",
+    "heading": "Competition pedigree.\nReal projects every week.",
+    "reasons": [
+      {
+        "icon": "fa-users",
+        "accentColor": "#0F6E56",
+        "iconBg": "#E8F5F1",
+        "heading": "Small class sizes",
+        "body": "Max 8 students per session. Every kid gets real hands-on time with the hardware — no waiting, no passengers."
+      },
+      {
+        "icon": "fa-trophy",
+        "accentColor": "#EF9F27",
+        "iconBg": "#FEF5E7",
+        "heading": "Competition pedigree",
+        "body": "Our coaches have competed in and coached FIRST LEGO League for 4+ seasons. We know what winning looks like — and how to build toward it."
+      },
+      {
+        "icon": "fa-diagram-project",
+        "accentColor": "#534AB7",
+        "iconBg": "#EEEDFA",
+        "heading": "Project-based learning",
+        "body": "No rote instruction. Every session ends with something built, coded, or competed. Progress is visible and tangible every week."
+      }
+    ]
+  },
+  "events": {
+    "eyebrow": "Upcoming",
+    "heading": "Workshops & events",
+    "items": [
+      {
+        "type": "Workshop",
+        "accentColor": "#534AB7",
+        "typeColor": "#534AB7",
+        "typeBg": "#EEEDFA",
+        "title": "Intro to Micro:bit Workshop",
+        "date": "Sat 12 Jul 2026 · 10am – 1pm",
+        "location": "In-person · 6 seats left",
+        "ages": "Ages 10–14",
+        "price": "$45"
+      },
+      {
+        "type": "Info Night",
+        "accentColor": "#0F6E56",
+        "typeColor": "#0F6E56",
+        "typeBg": "#E8F5F1",
+        "title": "AI for Kids — Parent Info Night",
+        "date": "Wed 16 Jul 2026 · 6:30 – 8pm",
+        "location": "Online · Link sent on registration",
+        "ages": "All ages welcome · Open",
+        "price": "Free"
+      },
+      {
+        "type": "FLL",
+        "accentColor": "#EF9F27",
+        "typeColor": "#B87212",
+        "typeBg": "#FEF5E7",
+        "title": "FLL Scrimmage Day",
+        "date": "Sat 26 Jul 2026 · 9am – 4pm",
+        "location": "In-person · 4 seats left",
+        "ages": "Ages 9–16",
+        "price": "$20"
+      }
+    ]
+  },
+  "trialForm": {
+    "eyebrow": "Get started",
+    "heading": "Book a free trial class",
+    "body": "No commitment. Your child attends one class for free — then decides if they want to keep building.",
+    "successHeading": "You're on the list.",
+    "successBody": "We'll be in touch within 24 hours to confirm your free trial. Bring curiosity — we'll handle the rest.",
+    "disclaimer": "No payment required. We'll confirm by email within 24 hours."
+  }
+}

@@ -4,19 +4,37 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import siteContent from '@/lib/content/site.json';
+import type { Locale } from '@/lib/i18n/config';
+import { localizedPath } from '@/lib/i18n/paths';
 import styles from './Nav.module.css';
 import AuthModal from './AuthModal';
+import LocaleSwitcher from './LocaleSwitcher';
 import { trackButtonClick, trackInteraction, trackLogout } from '@/lib/analytics';
 
-export default function Nav() {
+type NavItem = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+};
+
+type SiteContent = {
+  nav: NavItem[];
+};
+
+interface NavProps {
+  locale: Locale;
+  siteContent: SiteContent;
+}
+
+export default function Nav({ locale, siteContent }: NavProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [authTab, setAuthTab] = useState<'login' | 'signup'>('login');
   const [loggedIn, setLoggedIn] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
 
-  // Read initial auth state and listen for changes
   useEffect(() => {
     const read = () => {
       try {
@@ -52,11 +70,13 @@ export default function Nav() {
     setMenuOpen((v) => !v);
   };
 
+  const contactHref = localizedPath(locale, '/contact');
+
   return (
     <>
       <header className={styles.header}>
         <nav className={styles.nav} role="navigation" aria-label="Main navigation">
-          <Link href="/" className={styles.logo} aria-label="NEXUS Robotics – go to homepage">
+          <Link href={localizedPath(locale, '/')} className={styles.logo} aria-label="NEXUS Robotics – go to homepage">
             <Image
               src="/images/nexus-logo.svg"
               alt="NEXUS Robotics logo"
@@ -70,14 +90,61 @@ export default function Nav() {
             </span>
           </Link>
 
-          {/* Desktop links */}
           <ul className={styles.links} role="list">
             {siteContent.nav.map((item) => {
-              const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+              const href = localizedPath(locale, item.href);
+              const active = pathname === href || (item.href !== '/' && pathname.startsWith(href));
+
+              if (item.children?.length) {
+                return (
+                  <li
+                    key={item.href}
+                    className={styles.dropdownItem}
+                    onMouseEnter={() => setOpenDropdown(item.href)}
+                    onMouseLeave={() => setOpenDropdown((v) => (v === item.href ? null : v))}
+                  >
+                    <button
+                      type="button"
+                      className={styles.link}
+                      aria-current={active ? 'page' : undefined}
+                      data-active={active ? 'true' : undefined}
+                      aria-expanded={openDropdown === item.href}
+                      aria-haspopup="true"
+                      onClick={() =>
+                        setOpenDropdown((v) => (v === item.href ? null : item.href))
+                      }
+                    >
+                      {item.label}
+                      <svg aria-hidden="true" width="9" height="9" viewBox="0 0 10 10" fill="none" className={styles.chevron}>
+                        <path d="M2 3.5l3 3 3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                    {openDropdown === item.href && (
+                      <ul className={styles.dropdownMenu} role="list">
+                        {item.children.map((child) => {
+                          const childHref = localizedPath(locale, child.href);
+                          return (
+                            <li key={child.href}>
+                              <Link
+                                href={childHref}
+                                className={styles.dropdownLink}
+                                onClick={() => setOpenDropdown(null)}
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </li>
+                );
+              }
+
               return (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={href}
                     className={styles.link}
                     aria-current={active ? 'page' : undefined}
                     data-active={active ? 'true' : undefined}
@@ -89,8 +156,8 @@ export default function Nav() {
             })}
           </ul>
 
-          {/* CTA buttons */}
           <div className={styles.actions}>
+            <LocaleSwitcher />
             {loggedIn ? (
               <button
                 type="button"
@@ -109,15 +176,14 @@ export default function Nav() {
               </button>
             )}
             <Link
-              href="/contact"
+              href={contactHref}
               className={styles.btnPrimary}
-              onClick={() => trackButtonClick({ label: 'Book a Free Trial', location: 'nav-desktop', href: '/contact' })}
+              onClick={() => trackButtonClick({ label: 'Book a Free Trial', location: 'nav-desktop', href: contactHref })}
             >
               Book a Free Trial
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
           <button
             className={styles.hamburger}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -131,16 +197,52 @@ export default function Nav() {
           </button>
         </nav>
 
-        {/* Mobile menu */}
         {menuOpen && (
           <div id="mobile-menu" className={styles.mobileMenu} role="dialog" aria-label="Navigation menu">
             <ul role="list" className={styles.mobileLinks}>
               {siteContent.nav.map((item) => {
-                const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+                const href = localizedPath(locale, item.href);
+                const active = pathname === href || (item.href !== '/' && pathname.startsWith(href));
+
+                if (item.children?.length) {
+                  const expanded = mobileDropdown === item.href;
+                  return (
+                    <li key={item.href}>
+                      <button
+                        type="button"
+                        className={styles.mobileLink}
+                        data-active={active ? 'true' : undefined}
+                        aria-expanded={expanded}
+                        onClick={() => setMobileDropdown((v) => (v === item.href ? null : item.href))}
+                      >
+                        {item.label}
+                        <svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" fill="none" className={expanded ? styles.chevronOpen : styles.chevron}>
+                          <path d="M2 3.5l3 3 3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                      {expanded && (
+                        <ul role="list" className={styles.mobileSubLinks}>
+                          {item.children.map((child) => (
+                            <li key={child.href}>
+                              <Link
+                                href={localizedPath(locale, child.href)}
+                                className={styles.mobileSubLink}
+                                onClick={() => setMenuOpen(false)}
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                }
+
                 return (
                   <li key={item.href}>
                     <Link
-                      href={item.href}
+                      href={href}
                       className={styles.mobileLink}
                       aria-current={active ? 'page' : undefined}
                       data-active={active ? 'true' : undefined}
@@ -151,6 +253,9 @@ export default function Nav() {
                   </li>
                 );
               })}
+              <li className={styles.mobileLocale}>
+                <LocaleSwitcher />
+              </li>
               <li>
                 {loggedIn ? (
                   <button
@@ -172,9 +277,9 @@ export default function Nav() {
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href={contactHref}
                   className={styles.mobileCta}
-                  onClick={() => { trackButtonClick({ label: 'Book a Free Trial', location: 'nav-mobile', href: '/contact' }); setMenuOpen(false); }}
+                  onClick={() => { trackButtonClick({ label: 'Book a Free Trial', location: 'nav-mobile', href: contactHref }); setMenuOpen(false); }}
                 >
                   Book a Free Trial
                 </Link>

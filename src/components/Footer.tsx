@@ -1,14 +1,24 @@
 import Image from 'next/image';
-import siteContent from '@/lib/content/site.json';
 import TrackedLink from './TrackedLink';
 import styles from './Footer.module.css';
 
-export default function Footer() {
+type SiteContent = {
+  copyright: string;
+  footer: {
+    tagline: string;
+    columns: { heading: string; links: { label: string; href: string }[] }[];
+  };
+};
+
+interface FooterProps {
+  siteContent: SiteContent;
+}
+
+export default function Footer({ siteContent }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.grid}>
-          {/* Brand column */}
           <div className={styles.brand}>
             <div className={styles.brandLogo}>
               <Image
@@ -26,14 +36,18 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Link columns */}
           {siteContent.footer.columns.map((col) => (
             <div key={col.heading}>
               <h3 className={styles.colHeading}>{col.heading}</h3>
               <ul role="list" className={styles.colLinks}>
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <TrackedLink href={link.href} className={styles.colLink} label={link.label} location={`footer-${col.heading}`}>
+                    <TrackedLink
+                      href={link.href}
+                      className={styles.colLink}
+                      label={link.label}
+                      location={`footer-${col.heading}`}
+                    >
                       {link.label}
                     </TrackedLink>
                   </li>

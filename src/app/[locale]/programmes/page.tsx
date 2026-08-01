@@ -1,34 +1,66 @@
 import type { Metadata } from 'next';
 import ProgrammesClient from './ProgrammesClient';
-import programmesContent from '@/lib/content/programmes.json';
 import TrackedLink from '@/components/TrackedLink';
+import { getContent } from '@/lib/content/getContent';
+import { isValidLocale, type Locale } from '@/lib/i18n/config';
+import { localeAlternates } from '@/lib/i18n/metadata';
 import styles from './programmes.module.css';
 
-export const metadata: Metadata = {
-  title: 'Programmes',
-  description: 'Six robotics and coding tracks for kids aged 6–16. LEGO Spike Prime, FLL Competition, Micro:bit, HTML, AI for Kids, and Custom Robot Build. In-person & online.',
-  alternates: { canonical: '/programmes' },
-};
+type ProgrammesContent = typeof import('@/lib/content/ca/programmes.json');
 
-const courseListSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'NEXUS Robotics Programmes',
-  itemListElement: programmesContent.programmes.map((p, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    item: {
-      '@type': 'Course',
-      name: p.name,
-      description: p.description,
-      provider: { '@type': 'Organization', name: 'NEXUS Institute of STEM & Robotics' },
-      audience: { '@type': 'EducationalAudience', educationalRole: 'student', suggestedMinAge: p.ageMin, suggestedMaxAge: p.ageMax },
-    },
-  })),
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  if (!isValidLocale(localeParam)) {
+    return {};
+  }
 
-export default function ProgrammesPage() {
+  return {
+    title: 'Programmes',
+    description:
+      'Six robotics and coding tracks for kids aged 6–16. LEGO Spike Prime, FLL Competition, Micro:bit, HTML, AI for Kids, and Custom Robot Build. In-person & online.',
+    alternates: localeAlternates(localeParam, '/programmes'),
+  };
+}
+
+export default async function ProgrammesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  if (!isValidLocale(localeParam)) {
+    return null;
+  }
+
+  const locale: Locale = localeParam;
+  const programmesContent = await getContent<ProgrammesContent>(locale, 'programmes');
   const { pricing, faqs } = programmesContent;
+
+  const courseListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'NEXUS Robotics Programmes',
+    itemListElement: programmesContent.programmes.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Course',
+        name: p.name,
+        description: p.description,
+        provider: { '@type': 'Organization', name: 'NEXUS Institute of STEM & Robotics' },
+        audience: {
+          '@type': 'EducationalAudience',
+          educationalRole: 'student',
+          suggestedMinAge: p.ageMin,
+          suggestedMaxAge: p.ageMax,
+        },
+      },
+    })),
+  };
 
   return (
     <>
@@ -55,8 +87,7 @@ export default function ProgrammesPage() {
         </div>
       </section>
 
-      {/* FILTERABLE PROGRAMME LIST */}
-      <ProgrammesClient />
+      <ProgrammesClient programmesContent={programmesContent} />
 
       {/* LEARNING PATHWAY */}
       <section className={styles.pathway} aria-labelledby="pathway-heading">
@@ -100,7 +131,6 @@ export default function ProgrammesPage() {
             </p>
           </div>
           <div className={styles.pricingGrid}>
-            {/* Subscriptions */}
             <div className={styles.pricingCard}>
               <div className={styles.pricingCardHeader} style={{ background: '#0C2A20' }}>
                 <p className={styles.pricingCardEyebrow}>Monthly subscription</p>
@@ -121,7 +151,6 @@ export default function ProgrammesPage() {
               ))}
             </div>
 
-            {/* Course fees */}
             <div className={styles.pricingCard}>
               <div className={styles.pricingCardHeader} style={{ background: '#091F17' }}>
                 <p className={styles.pricingCardEyebrow}>Course-based fees</p>
@@ -165,7 +194,7 @@ export default function ProgrammesPage() {
   );
 }
 
-function FaqList({ faqs }: { faqs: typeof programmesContent.faqs }) {
+function FaqList({ faqs }: { faqs: ProgrammesContent['faqs'] }) {
   return (
     <dl className={styles.faqList}>
       {faqs.map((faq) => (

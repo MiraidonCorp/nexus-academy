@@ -2,11 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
-import Nav from '@/components/Nav';
-import Footer from '@/components/Footer';
 import Analytics from '@/components/Analytics';
 import SiteNotice from '@/components/SiteNotice';
-import siteContent from '@/lib/content/site.json';
+import { localeMeta, defaultLocale } from '@/lib/i18n/config';
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
@@ -18,47 +16,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nexusrobotics.com.au'),
-  title: {
-    default: 'NEXUS Institute of STEM & Robotics | Kids Robotics & Coding Classes',
-    template: '%s | NEXUS Robotics',
-  },
-  description: siteContent.description,
-  keywords: [
-    'robotics for kids',
-    'STEM education',
-    'FIRST LEGO League',
-    'coding classes kids',
-    'AI for kids',
-    'Spike Prime',
-    'micro:bit',
-    'kids robotics classes',
-    'STEM academy',
-  ],
-  authors: [{ name: 'NEXUS Institute of STEM & Robotics' }],
-  creator: 'Miraidon',
-  openGraph: {
-    type: 'website',
-    locale: 'en_AU',
-    siteName: siteContent.siteName,
-    title: 'NEXUS Institute of STEM & Robotics',
-    description: siteContent.description,
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'NEXUS Robotics' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'NEXUS Institute of STEM & Robotics',
-    description: siteContent.description,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const lang = localeMeta[defaultLocale].hreflang;
+
   return (
-    <html lang="en-AU">
+    <html lang={lang} className={inter.className}>
       {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body>
         {GTM_ID && (
@@ -73,14 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
         <Analytics />
         <SiteNotice />
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        <Nav />
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

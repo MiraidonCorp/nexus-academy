@@ -1,0 +1,108 @@
+{
+  "hero": {
+    "eyebrow": "From the classroom",
+    "heading": "Ideas worth reading.",
+    "body": "Competition recaps, tutorials, parent guides, and AI literacy explainers — written by coaches who've actually done the thing."
+  },
+  "categories": [
+    { "id": "all", "label": "All posts" },
+    { "id": "fll", "label": "FLL" },
+    { "id": "spike-prime", "label": "Spike Prime" },
+    { "id": "microbit", "label": "Micro:bit" },
+    { "id": "ai", "label": "AI for Kids" },
+    { "id": "coding", "label": "Coding" },
+    { "id": "parent-tips", "label": "Parent Tips" }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "slug": "your-first-fll-season-what-to-expect",
+      "title": "Your first FLL season: what to expect",
+      "excerpt": "A parent's guide to the FIRST LEGO League season — from qualifier registration to competition day. What to prepare, and why your kid will come home exhausted and elated.",
+      "category": "fll",
+      "categoryLabel": "FLL",
+      "categoryColor": "#B87212",
+      "categoryBg": "#FEF5E7",
+      "author": "Priya Nair",
+      "date": "Jun 10, 2026",
+      "readTime": "5 min",
+      "image": "/images/blog1.jpg",
+      "imageAlt": "Students competing in FIRST LEGO League"
+    },
+    {
+      "id": 2,
+      "slug": "html-in-20-minutes-build-your-first-web-page",
+      "title": "HTML in 20 minutes: build your first web page",
+      "excerpt": "A step-by-step tutorial from our HTML Basics track. Open a text editor, follow along, and end with a real page live on the internet.",
+      "category": "coding",
+      "categoryLabel": "Coding",
+      "categoryColor": "#378ADD",
+      "categoryBg": "#E8F2FB",
+      "author": "Sam Torres",
+      "date": "May 28, 2026",
+      "readTime": "4 min",
+      "image": "/images/blog2.jpg",
+      "imageAlt": "Student coding HTML on a laptop"
+    },
+    {
+      "id": 3,
+      "slug": "how-ai-tools-are-changing-how-kids-learn",
+      "title": "How AI tools are changing how kids learn",
+      "excerpt": "AI is already in your child's classroom. Here's how to help them engage with it critically, ethically, and creatively — not just as a shortcut.",
+      "category": "ai",
+      "categoryLabel": "AI for Kids",
+      "categoryColor": "#0F6E56",
+      "categoryBg": "#E8F5F1",
+      "author": "Jordan Park",
+      "date": "May 14, 2026",
+      "readTime": "6 min",
+      "image": "/images/blog3.jpg",
+      "imageAlt": "Child interacting with AI tools"
+    },
+    {
+      "id": 4,
+      "slug": "lego-spike-prime-vs-mindstorms",
+      "title": "LEGO Spike Prime vs Mindstorms: which kit is right for your child?",
+      "excerpt": "Both are excellent platforms — but they serve different learners. We break down the differences so you can pick the right starting point.",
+      "category": "spike-prime",
+      "categoryLabel": "Spike Prime",
+      "categoryColor": "#0F6E56",
+      "categoryBg": "#E8F5F1",
+      "author": "Alex Chen",
+      "date": "Apr 30, 2026",
+      "readTime": "7 min",
+      "image": "/images/course-img1.jpg",
+      "imageAlt": "LEGO Spike Prime robotics kit"
+    },
+    {
+      "id": 5,
+      "slug": "what-actually-happens-at-an-fll-scrimmage-day",
+      "title": "What actually happens at an FLL scrimmage day?",
+      "excerpt": "First scrimmage coming up? Here's the full picture — match format, judging sessions, what the kids wear, and what parents should bring.",
+      "category": "fll",
+      "categoryLabel": "FLL",
+      "categoryColor": "#B87212",
+      "categoryBg": "#FEF5E7",
+      "author": "Priya Nair",
+      "date": "Apr 15, 2026",
+      "readTime": "4 min",
+      "image": "/images/course-img2.jpg",
+      "imageAlt": "Students at an FLL scrimmage day"
+    },
+    {
+      "id": 6,
+      "slug": "teaching-your-child-to-think-like-an-engineer",
+      "title": "Teaching your child to think like an engineer",
+      "excerpt": "Engineering isn't a subject — it's a mindset. Here's how to build that mindset at home, starting from age 6, no expensive kit required.",
+      "category": "parent-tips",
+      "categoryLabel": "Parent Tips",
+      "categoryColor": "#534AB7",
+      "categoryBg": "#EEEDFA",
+      "author": "Alex Chen",
+      "date": "Apr 2, 2026",
+      "readTime": "5 min",
+      "image": "/images/course-img3.jpg",
+      "imageAlt": "Child building with blocks at home"
+    }
+  ]
+}

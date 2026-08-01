@@ -1,0 +1,234 @@
+{
+  "programmes": [
+    {
+      "id": "spike",
+      "name": "LEGO Spike Prime",
+      "subtitle": "Robotics Foundations",
+      "pillar": "Convergence",
+      "ageRange": "Ages 6–10",
+      "ageMin": 6,
+      "ageMax": 10,
+      "format": "In-person & Online",
+      "formatKeys": ["in-person", "online"],
+      "duration": "8 weeks",
+      "sessionLength": "60 min/session",
+      "price": "$[XXX]",
+      "accentColor": "#0F6E56",
+      "headerBg": "#091F17",
+      "glowColor": "rgba(15,110,86,0.38)",
+      "iconClass": "fa-gear",
+      "pillarColor": "#0F6E56",
+      "pillarBg": "#E8F5F1",
+      "description": "Hands-on building and block/Python coding with the Spike Prime kit. Covers mechanical design, sensors, and basic autonomous behaviors — the ideal entry point for beginners.",
+      "skills": [
+        "Mechanical design & building",
+        "Block & Python coding",
+        "Sensor programming",
+        "Autonomous robot behaviors"
+      ],
+      "kit": "Spike Prime kit — loaner included",
+      "outcomes": "Mini robot showcase at term end",
+      "heroIcon": "⚙️"
+    },
+    {
+      "id": "fll",
+      "name": "FLL Competition Track",
+      "subtitle": "Past-Season Kit-Based",
+      "pillar": "Boldness",
+      "ageRange": "Ages 9–16",
+      "ageMin": 9,
+      "ageMax": 16,
+      "format": "In-person",
+      "formatKeys": ["in-person"],
+      "duration": "12–16 weeks",
+      "sessionLength": "90 min/session",
+      "price": "$[XXX]",
+      "accentColor": "#EF9F27",
+      "headerBg": "#1A100A",
+      "glowColor": "rgba(239,159,39,0.32)",
+      "iconClass": "fa-trophy",
+      "pillarColor": "#B87212",
+      "pillarBg": "#FEF5E7",
+      "description": "Real FIRST LEGO League season kits and challenge missions. Covers strategy, mission scoring, engineering notebook writing, and teamwork — the full competition experience.",
+      "skills": [
+        "Strategy & mission scoring",
+        "Engineering notebook writing",
+        "Robot design iteration",
+        "Team presentation prep"
+      ],
+      "kit": "Past-season FLL kit (provided)",
+      "outcomes": "FLL competition eligibility",
+      "heroIcon": "🏆"
+    },
+    {
+      "id": "microbit",
+      "name": "Micro:bit Coding",
+      "subtitle": "Electronics & Physical Computing",
+      "pillar": "Curiosity",
+      "ageRange": "Ages 10–14",
+      "ageMin": 10,
+      "ageMax": 14,
+      "format": "In-person & Online",
+      "formatKeys": ["in-person", "online"],
+      "duration": "6 weeks",
+      "sessionLength": "60 min/session",
+      "price": "$[XXX]",
+      "accentColor": "#534AB7",
+      "headerBg": "#0D0B22",
+      "glowColor": "rgba(83,74,183,0.38)",
+      "iconClass": "fa-microchip",
+      "pillarColor": "#534AB7",
+      "pillarBg": "#EEEDFA",
+      "description": "BBC micro:bit — block and Python coding, sensors, LEDs, radio communication, and wearable electronics projects. Physical computing made accessible and fun.",
+      "skills": [
+        "Physical computing",
+        "Python & block code",
+        "Electronics & sensors",
+        "Radio communication projects"
+      ],
+      "kit": "Micro:bit board + accessories (provided)",
+      "outcomes": "Wearable electronics project",
+      "heroIcon": "💡"
+    },
+    {
+      "id": "html",
+      "name": "HTML Basics",
+      "subtitle": "Intro to Web Development",
+      "pillar": "Humanity",
+      "ageRange": "Ages 10–15",
+      "ageMin": 10,
+      "ageMax": 15,
+      "format": "Online",
+      "formatKeys": ["online"],
+      "duration": "6 weeks",
+      "sessionLength": "60 min/session",
+      "price": "$[XX]",
+      "accentColor": "#378ADD",
+      "headerBg": "#061526",
+      "glowColor": "rgba(55,138,221,0.32)",
+      "iconClass": "fa-code",
+      "pillarColor": "#378ADD",
+      "pillarBg": "#E8F2FB",
+      "description": "HTML structure, basic CSS styling, and simple page-building projects. A bridge into software literacy — the internet explained from first principles. BYOD or laptop rental available.",
+      "skills": [
+        "HTML structure & syntax",
+        "CSS styling basics",
+        "Build a real webpage",
+        "Web publishing basics"
+      ],
+      "kit": "Laptop required (rental available)",
+      "outcomes": "Personal web page published online",
+      "heroIcon": "🌐"
+    },
+    {
+      "id": "ai",
+      "name": "AI for Kids",
+      "subtitle": "Concepts, Ethics & Hands-on AI",
+      "pillar": "Convergence",
+      "ageRange": "Ages 11–16",
+      "ageMin": 11,
+      "ageMax": 16,
+      "format": "In-person & Online",
+      "formatKeys": ["in-person", "online"],
+      "duration": "6 weeks",
+      "sessionLength": "60 min/session",
+      "price": "$[XXX]",
+      "accentColor": "#0F6E56",
+      "headerBg": "#091F17",
+      "glowColor": "rgba(15,110,86,0.35)",
+      "iconClass": "fa-brain",
+      "pillarColor": "#0F6E56",
+      "pillarBg": "#E8F5F1",
+      "description": "Pattern recognition, training data, ethics, and kid-safe AI tools through games and projects. No heavy math — honest, grounded AI literacy for curious minds.",
+      "skills": [
+        "Pattern recognition",
+        "AI ethics & safety",
+        "Kid-safe AI tools",
+        "Hands-on AI projects"
+      ],
+      "kit": "Access to kid-safe AI tools (provided)",
+      "outcomes": "AI ethics presentation + demo project",
+      "heroIcon": "🧠"
+    },
+    {
+      "id": "robot",
+      "name": "Custom Robot Build",
+      "subtitle": "CAD & 3D Printing",
+      "pillar": "Boldness",
+      "ageRange": "Ages 12–16",
+      "ageMin": 12,
+      "ageMax": 16,
+      "format": "In-person",
+      "formatKeys": ["in-person"],
+      "duration": "8–10 weeks",
+      "sessionLength": "90 min/session",
+      "price": "$[XXX]",
+      "accentColor": "#EF9F27",
+      "headerBg": "#1A100A",
+      "glowColor": "rgba(239,159,39,0.3)",
+      "iconClass": "fa-print",
+      "pillarColor": "#B87212",
+      "pillarBg": "#FEF5E7",
+      "description": "CAD basics, 3D-printed custom parts, and robot assembly with original programming. For students who have outgrown standard kits and are ready to design from scratch.",
+      "skills": [
+        "CAD fundamentals",
+        "3D printing & fabrication",
+        "Custom robot programming",
+        "Mechanical engineering basics"
+      ],
+      "kit": "3D-print filament credit + parts kit",
+      "outcomes": "Original 3D-printed robot showcase",
+      "heroIcon": "🤖"
+    }
+  ],
+  "pricing": {
+    "subscriptions": [
+      {
+        "name": "Starter",
+        "price": "$[XX]/mo",
+        "frequency": "1× per week · 1 track",
+        "description": "Access to 1 track, online resource library. Best for beginners exploring robotics."
+      },
+      {
+        "name": "Explorer",
+        "price": "$[XX]/mo",
+        "frequency": "2× per week · 2 tracks + loaner kit",
+        "description": "Access to 2 tracks, loaner kit access, project showcase entry.",
+        "highlighted": false
+      },
+      {
+        "name": "Pro / Competition",
+        "price": "$[XX]/mo",
+        "frequency": "3× per week · all tracks + FLL eligibility",
+        "description": "All tracks, FLL team eligibility, monthly 3D-print credit. For competition-bound students.",
+        "badge": "Popular"
+      }
+    ],
+    "courses": [
+      { "name": "LEGO Spike Prime", "detail": "8 weeks · kit loaner", "price": "$[XXX]" },
+      { "name": "FLL Competition Track", "detail": "12–16 weeks · kit provided", "price": "$[XXX]" },
+      { "name": "Micro:bit Coding", "detail": "6 weeks · board included", "price": "$[XXX]" },
+      { "name": "HTML Basics", "detail": "6 weeks · BYOD", "price": "$[XX]" },
+      { "name": "AI for Kids", "detail": "6 weeks · tools provided", "price": "$[XXX]" },
+      { "name": "Custom Robot Build", "detail": "8–10 weeks · parts kit", "price": "$[XXX]" }
+    ]
+  },
+  "faqs": [
+    {
+      "question": "Do I need prior experience to join?",
+      "answer": "No prior experience required. Most of our tracks — LEGO Spike Prime and Micro:bit in particular — are designed specifically for complete beginners. We start from zero every term."
+    },
+    {
+      "question": "Is equipment provided or do we need to buy anything?",
+      "answer": "Most hardware is provided or available as a loaner included in the course fee. HTML Basics requires a laptop — bring your own or rent one from us. The Custom Robot Build track includes a 3D-print filament credit."
+    },
+    {
+      "question": "Can my child join mid-term?",
+      "answer": "Yes, for most tracks. We'll find the right entry point and settle in at the right level. Contact us and we'll advise based on the current cohort stage."
+    },
+    {
+      "question": "Do students receive certificates?",
+      "answer": "Yes — every student receives a digital certificate of completion at the end of their term. FLL track students also receive their competition records and robot performance logs."
+    }
+  ]
+}

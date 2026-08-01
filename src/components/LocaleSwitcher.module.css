@@ -1,0 +1,35 @@
+.switcher {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  border: 0.5px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.option {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: background 150ms, color 150ms;
+}
+
+.option:hover {
+  color: var(--color-text);
+  background: #fff;
+}
+
+.active {
+  background: #fff;
+  color: var(--color-green);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+  .switcher {
+    width: 100%;
+    justify-content: center;
+  }
+}

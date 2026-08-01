@@ -75,6 +75,62 @@
   border-bottom-color: var(--color-green);
 }
 
+.dropdownItem {
+  position: relative;
+  /* Invisible padding bridges the gap to the menu so hover doesn't drop
+     out between the trigger and the panel. */
+  padding-bottom: 14px;
+  margin-bottom: -14px;
+}
+
+.dropdownItem .link {
+  background: none;
+  border: none;
+  border-bottom: 1.5px solid transparent;
+  padding: 0 0 3px;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.chevron {
+  transition: transform 150ms;
+}
+
+.dropdownItem .link[aria-expanded='true'] .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: -14px;
+  background: #fff;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 8px;
+  min-width: 180px;
+  list-style: none;
+  z-index: 410;
+}
+
+.dropdownLink {
+  display: block;
+  font-size: 14px;
+  color: var(--color-text);
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.dropdownLink:hover {
+  background: var(--color-green-light);
+  color: var(--color-green);
+}
+
 .actions {
   display: flex;
   align-items: center;
@@ -112,6 +168,12 @@
 
 .btnPrimary:hover {
   background: var(--color-green-mid);
+}
+
+.mobileLocale {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 4px;
 }
 
 .hamburger {
@@ -157,6 +219,37 @@
 .mobileLink[data-active='true'] {
   color: var(--color-green);
   font-weight: 500;
+}
+
+button.mobileLink {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 0.5px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.mobileSubLinks {
+  list-style: none;
+  padding-left: 16px;
+  background: var(--color-green-light);
+}
+
+.mobileSubLink {
+  display: block;
+  font-size: 15px;
+  color: var(--color-green);
+  padding: 10px 0 10px 8px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.6);
 }
 
 .mobileCta {

@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import contactContent from '@/lib/content/contact.json';
 import styles from './contact.module.css';
 import { trackFormSubmit } from '@/lib/analytics';
+
+type FormContent = typeof import('@/lib/content/ca/contact.json')['form'];
 
 interface FormState {
   name: string;
@@ -15,7 +16,11 @@ interface FormState {
   message: string;
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  formContent: FormContent;
+}
+
+export default function ContactForm({ formContent }: ContactFormProps) {
   const [form, setForm] = useState<FormState>({
     name: '', email: '', phone: '', childAge: '', interest: '', location: '', message: '',
   });
@@ -50,15 +55,15 @@ export default function ContactForm() {
     return (
       <div className={styles.formSuccess} role="alert" aria-live="polite">
         <div className={styles.successIcon} aria-hidden="true">✓</div>
-        <h2 className={styles.successHeading}>{contactContent.form.successHeading}</h2>
-        <p className={styles.successBody}>{contactContent.form.successBody}</p>
+        <h2 className={styles.successHeading}>{formContent.successHeading}</h2>
+        <p className={styles.successBody}>{formContent.successBody}</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className={styles.form} noValidate aria-label="Contact form">
-      <h2 className={styles.formHeading}>{contactContent.form.heading}</h2>
+      <h2 className={styles.formHeading}>{formContent.heading}</h2>
       <p className={styles.formNote}>
         Fields marked <span aria-hidden="true" className={styles.required}>*</span>
         <span className="sr-only">with an asterisk</span> are required.
@@ -132,7 +137,7 @@ export default function ContactForm() {
           <label htmlFor="cf-interest" className={styles.label}>Programme of interest</label>
           <select id="cf-interest" value={form.interest} onChange={set('interest')} className={styles.select}>
             <option value="">Select a programme…</option>
-            {contactContent.form.programmes.map((p) => (
+            {formContent.programmes.map((p) => (
               <option key={p.value} value={p.value}>{p.label}</option>
             ))}
           </select>
@@ -142,7 +147,7 @@ export default function ContactForm() {
           <label htmlFor="cf-format" className={styles.label}>Preferred format</label>
           <select id="cf-format" value={form.location} onChange={set('location')} className={styles.select}>
             <option value="">Select…</option>
-            {contactContent.form.formats.map((f) => (
+            {formContent.formats.map((f) => (
               <option key={f.value} value={f.value}>{f.label}</option>
             ))}
           </select>
@@ -164,7 +169,7 @@ export default function ContactForm() {
       <button type="submit" className={styles.submitBtn}>
         Send enquiry &amp; book my free trial
       </button>
-      <p className={styles.formDisclaimer}>{contactContent.form.disclaimer}</p>
+      <p className={styles.formDisclaimer}>{formContent.disclaimer}</p>
     </form>
   );
 }

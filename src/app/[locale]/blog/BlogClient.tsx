@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { isValidLocale, type Locale } from '@/lib/i18n/config';
+import { localizedPath } from '@/lib/i18n/paths';
 import styles from './blog.module.css';
 import { trackButtonClick, trackFormSubmit, trackInteraction } from '@/lib/analytics';
 
@@ -28,6 +31,13 @@ interface Category {
 }
 
 export default function BlogClient({ posts, categories }: { posts: Post[]; categories: Category[] }) {
+  const params = useParams();
+  const localeParam = params.locale;
+  const locale: Locale = typeof localeParam === 'string' && isValidLocale(localeParam)
+    ? localeParam
+    : 'ca';
+  const postPath = (slug: string) => localizedPath(locale, `/blog/${slug}`);
+
   const [activeCat, setActiveCat] = useState('all');
   const [email, setEmail] = useState('');
   const [subbed, setSubbed] = useState(false);
@@ -105,9 +115,9 @@ export default function BlogClient({ posts, categories }: { posts: Post[]; categ
                   <span>{featured.readTime} read</span>
                 </p>
                 <Link
-                  href={`/blog/${featured.slug}`}
+                  href={postPath(featured.slug)}
                   className={styles.readLink}
-                  onClick={() => trackButtonClick({ label: 'Read article', location: 'blog-featured', href: `/blog/${featured.slug}` })}
+                  onClick={() => trackButtonClick({ label: 'Read article', location: 'blog-featured', href: postPath(featured.slug) })}
                 >
                   Read article
                   <svg aria-hidden="true" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M7 2.5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -152,9 +162,9 @@ export default function BlogClient({ posts, categories }: { posts: Post[]; categ
                     <div className={styles.blogCardFooter}>
                       <span className={styles.blogMeta}>{post.author} · {post.readTime}</span>
                       <Link
-                        href={`/blog/${post.slug}`}
+                        href={postPath(post.slug)}
                         className={styles.blogReadLink}
-                        onClick={() => trackButtonClick({ label: 'Read', location: 'blog-grid-card', href: `/blog/${post.slug}` })}
+                        onClick={() => trackButtonClick({ label: 'Read', location: 'blog-grid-card', href: postPath(post.slug) })}
                       >
                         Read
                         <svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5h7M6 2.5l3 2.5-3 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>

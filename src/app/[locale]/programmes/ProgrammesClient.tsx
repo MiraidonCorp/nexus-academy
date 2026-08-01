@@ -2,14 +2,28 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import programmesContent from '@/lib/content/programmes.json';
+import { useParams } from 'next/navigation';
+import { isValidLocale, type Locale } from '@/lib/i18n/config';
+import { localizedPath } from '@/lib/i18n/paths';
 import styles from './programmes.module.css';
 import { trackButtonClick, trackInteraction } from '@/lib/analytics';
+
+type ProgrammesContent = typeof import('@/lib/content/ca/programmes.json');
 
 type AgeFilter = 'all' | '6-9' | '10-12' | '13-16';
 type FormatFilter = 'all' | 'in-person' | 'online';
 
-export default function ProgrammesClient() {
+interface ProgrammesClientProps {
+  programmesContent: ProgrammesContent;
+}
+
+export default function ProgrammesClient({ programmesContent }: ProgrammesClientProps) {
+  const params = useParams();
+  const localeParam = params.locale;
+  const locale: Locale = typeof localeParam === 'string' && isValidLocale(localeParam)
+    ? localeParam
+    : 'ca';
+  const contactHref = localizedPath(locale, '/contact');
   const [ageFilter, setAgeFilter] = useState<AgeFilter>('all');
   const [formatFilter, setFormatFilter] = useState<FormatFilter>('all');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -144,9 +158,9 @@ export default function ProgrammesClient() {
                             <li>🏷️ Course fee: {prog.price}</li>
                           </ul>
                           <Link
-                            href="/contact"
+                            href={contactHref}
                             className={styles.enrollBtn}
-                            onClick={() => trackButtonClick({ label: 'Enroll now', location: 'programmes-list', href: '/contact', programme: prog.name })}
+                            onClick={() => trackButtonClick({ label: 'Enroll now', location: 'programmes-list', href: contactHref, programme: prog.name })}
                           >
                             Enroll now
                             <svg aria-hidden="true" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M7 2.5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>

@@ -1,29 +1,57 @@
 import type { Metadata } from 'next';
 import ContactForm from './ContactForm';
-import contactContent from '@/lib/content/contact.json';
-import siteContent from '@/lib/content/site.json';
 import TrackedLink from '@/components/TrackedLink';
+import { getContent } from '@/lib/content/getContent';
+import { isValidLocale, type Locale } from '@/lib/i18n/config';
+import { localeAlternates } from '@/lib/i18n/metadata';
 import styles from './contact.module.css';
 
-export const metadata: Metadata = {
-  title: 'Contact & Book a Free Trial',
-  description: 'Book a free trial class at NEXUS Robotics. No payment required. Fill in the form and we\'ll confirm within 24 hours.',
-  alternates: { canonical: '/contact' },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  if (!isValidLocale(localeParam)) {
+    return {};
+  }
 
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: siteContent.siteName,
-  telephone: siteContent.contact.phone,
-  email: siteContent.contact.email,
-  openingHours: 'Mo-Sa 09:00-18:00',
-  url: 'https://nexusrobotics.com.au',
-};
+  return {
+    title: 'Contact & Book a Free Trial',
+    description:
+      "Book a free trial class at NEXUS Robotics. No payment required. Fill in the form and we'll confirm within 24 hours.",
+    alternates: localeAlternates(localeParam, '/contact'),
+  };
+}
 
-export default function ContactPage() {
-  const { hero, faqs } = contactContent;
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  if (!isValidLocale(localeParam)) {
+    return null;
+  }
+
+  const locale: Locale = localeParam;
+  const [contactContent, siteContent] = await Promise.all([
+    getContent<typeof import('@/lib/content/ca/contact.json')>(locale, 'contact'),
+    getContent<typeof import('@/lib/content/ca/site.json')>(locale, 'site'),
+  ]);
+
+  const { hero, faqs, form } = contactContent;
   const { contact } = siteContent;
+
+  const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: siteContent.siteName,
+    telephone: siteContent.contact.phone,
+    email: siteContent.contact.email,
+    openingHours: 'Mo-Sa 09:00-18:00',
+    url: `https://nexusrobotics.com.au/${locale}/contact`,
+  };
 
   return (
     <>
@@ -45,7 +73,7 @@ export default function ContactPage() {
       {/* MAIN */}
       <section className={styles.main}>
         <div className={styles.mainInner}>
-          <ContactForm />
+          <ContactForm formContent={form} />
 
           {/* SIDEBAR */}
           <aside className={styles.sidebar} aria-label="Contact information">
