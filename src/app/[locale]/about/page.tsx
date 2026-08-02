@@ -19,7 +19,7 @@ export async function generateMetadata({
   return {
     title: 'About Us',
     description:
-      'Learn about NEXUS Institute of STEM & Robotics — our story, mission, teaching philosophy, team of FLL coaches, and competition history.',
+      'Learn about NEXUS Institute of STEM & Robotics — our mission, teaching philosophy, and hands-on programmes for young builders.',
     alternates: localeAlternates(localeParam, '/about'),
   };
 }
@@ -86,9 +86,9 @@ export default async function AboutPage({
             </div>
             <div className={styles.statsRow} role="list">
               {[
-                { value: '4+', label: 'Years active' },
-                { value: '500+', label: 'Students' },
-                { value: '12', label: 'FLL awards' },
+                { value: '6', label: 'Hands-on tracks' },
+                { value: '6–16', label: 'Ages supported' },
+                { value: '2', label: 'Ways to learn' },
               ].map((s) => (
                 <div key={s.label} role="listitem" className={styles.statCard}>
                   <span className={styles.statValue}>{s.value}</span>
@@ -158,14 +158,14 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* TIMELINE */}
+      {/* PROGRAMME JOURNEY */}
       <section className={styles.timeline} aria-labelledby="timeline-heading">
         <div className={styles.sectionInner}>
           <div className={styles.sectionHeader}>
             <p className={styles.eyebrowGreen}>{timeline.eyebrow}</p>
             <h2 id="timeline-heading" className={styles.heading}>{timeline.heading}</h2>
           </div>
-          <div className={styles.timelineTrack} aria-label="Competition history">
+          <div className={styles.timelineTrack} aria-label="Programme journey">
             {timeline.events.map((event, i) => (
               <div key={i} className={styles.timelineItem}>
                 <div className={styles.timelineDot} style={{ background: event.color, boxShadow: `0 0 0 2px ${event.color}` }} aria-hidden="true" />
