@@ -36,8 +36,8 @@
   margin: 0 auto;
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 420px);
-  gap: 64px;
+  grid-template-columns: minmax(0, 1fr) minmax(460px, 0.95fr);
+  gap: 56px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -130,6 +130,7 @@
 
 .heroMedia {
   position: relative;
+  width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -560,7 +561,7 @@
 @media (max-width: 900px) {
   .hero { min-height: auto; }
   .heroInner { grid-template-columns: 1fr; gap: 40px; }
-  .heroMedia { max-width: 680px; width: 100%; margin: 0 auto; }
+  .heroMedia { max-width: 680px; width: 100%; margin: 0 auto; aspect-ratio: 4 / 3; }
   .programmeGrid { grid-template-columns: 1fr; }
   .whyGrid { grid-template-columns: 1fr; }
   .eventsGrid { grid-template-columns: 1fr; }

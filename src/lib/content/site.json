@@ -17,10 +17,10 @@
     "whatsapp": "#"
   },
   "stats": [
-    { "value": "4+", "label": "Years running" },
-    { "value": "500+", "label": "Students trained" },
-    { "value": "12", "label": "FLL awards" },
-    { "value": "6", "label": "Tracks" }
+    { "value": "6", "label": "Hands-on tracks" },
+    { "value": "6–16", "label": "Ages supported" },
+    { "value": "2", "label": "Ways to learn" },
+    { "value": "Weekly", "label": "Projects to build" }
   ],
   "nav": [
     { "label": "Home", "href": "/" },
